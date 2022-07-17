@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/pages/reels.dart';
 import 'package:instagram_clone/pages/search.dart';
 import 'package:instagram_clone/post.dart';
 import 'package:instagram_clone/storyButton.dart';
@@ -24,6 +25,13 @@ class InstagramApp extends StatefulWidget {
 }
 
 class _InstagramAppState extends State<InstagramApp> {
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   List<String> userAvatar = [
     "https://randomuser.me/api/portraits/women/9.jpg",
@@ -35,9 +43,7 @@ class _InstagramAppState extends State<InstagramApp> {
     "https://randomuser.me/api/portraits/men/52.jpg",
     "https://randomuser.me/api/portraits/women/55.jpg"
   ];
-  List<String> imagesUrl = [
-    "https://www.aa.com.tr/tr/turkiye/guneyin-incisi-arsuz-tatilcileri-bekliyor/1205416"
-  ];
+  List<String> imagesUrl = ["https://picsum.photos/536/354.jpg"];
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,9 +101,12 @@ class _InstagramAppState extends State<InstagramApp> {
           ),
           SizedBox(height: 10.0),
           post(userAvatar[0], "Emre", imagesUrl[0], "Arsuz / Hatay"),
+          post(userAvatar[0], "Emre", imagesUrl[0], "Arsuz / Hatay"),
         ],
       )),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.black,
         items: <BottomNavigationBarItem>[
@@ -107,7 +116,7 @@ class _InstagramAppState extends State<InstagramApp> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => searchPage(),
+                    builder: (context) => InstagramApp(),
                   ),
                 );
               },
@@ -120,7 +129,7 @@ class _InstagramAppState extends State<InstagramApp> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => searchPage(),
+                    builder: (context) => SearchPage(),
                   ),
                 );
               },
@@ -133,7 +142,7 @@ class _InstagramAppState extends State<InstagramApp> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => searchPage(),
+                    builder: (context) => ReelsPage(),
                   ),
                 );
               },
@@ -146,7 +155,7 @@ class _InstagramAppState extends State<InstagramApp> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => searchPage(),
+                    builder: (context) => SearchPage(),
                   ),
                 );
               },
@@ -159,7 +168,7 @@ class _InstagramAppState extends State<InstagramApp> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => searchPage(),
+                    builder: (context) => SearchPage(),
                   ),
                 );
               },
